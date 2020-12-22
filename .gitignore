@@ -2,4 +2,4 @@ public
 /index.html
 node_modules
 shrinkwrap.yaml
-
+.DS_Store

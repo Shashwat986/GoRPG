@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"city1.json"
+         "target":"field.json"
         }
     },
  "height":16,
@@ -93,7 +93,7 @@
         }, 
         {
          "chunks":[],
-         "height":16,
+         "height":0,
          "id":4,
          "name":"Over",
          "opacity":1,
@@ -107,7 +107,7 @@
          "starty":0,
          "type":"tilelayer",
          "visible":true,
-         "width":16,
+         "width":0,
          "x":0,
          "y":0
         }, 
@@ -122,11 +122,45 @@
                  "name":"PlayerStart",
                  "point":true,
                  "rotation":0,
-                 "type":"",
+                 "type":"Spawn",
                  "visible":true,
                  "width":0,
                  "x":401,
                  "y":329
+                }, 
+                {
+                 "height":55.1196172248804,
+                 "id":3,
+                 "name":"OpenBoard1",
+                 "properties":[
+                        {
+                         "name":"interactionType",
+                         "type":"string",
+                         "value":"OpenBoard1"
+                        }],
+                 "rotation":0,
+                 "type":"Interaction",
+                 "visible":true,
+                 "width":26.9473684210526,
+                 "x":417.684210526316,
+                 "y":164.133971291866
+                }, 
+                {
+                 "height":25.7224880382775,
+                 "id":4,
+                 "name":"OpenBoard2",
+                 "properties":[
+                        {
+                         "name":"interactionType",
+                         "type":"string",
+                         "value":"OpenBoard2"
+                        }],
+                 "rotation":0,
+                 "type":"Interaction",
+                 "visible":true,
+                 "width":24.4976076555024,
+                 "x":226.602870813397,
+                 "y":34.2966507177034
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -135,7 +169,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":2,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
@@ -144,11 +178,11 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/..\/Desktop\/TileMap\/Pipoya RPG Tileset 32x32\/[Base]BaseChip_pipo.png",
+         "image":"base.png",
          "imageheight":4256,
          "imagewidth":256,
          "margin":0,
-         "name":"Base",
+         "name":"base",
          "spacing":0,
          "tilecount":1064,
          "tileheight":32,

@@ -8,11 +8,11 @@ class GameScene extends Phaser.Scene {
     }
 
     init (data) {
-        console.log(data)
+        this.map = 'field';
     }
 
     preload () {
-        this.load.tilemapTiledJSON("map", "assets/field.json");
+        this.load.tilemapTiledJSON(this.map, "assets/" + this.map + ".json");
     }
 
     create () {
@@ -28,8 +28,8 @@ class GameScene extends Phaser.Scene {
     }
 
     createMap () {
-        this.map = this.make.tilemap({ key: "map" });
-        this.tileset = this.map.addTilesetImage("Base", "base");
+        this.map = this.make.tilemap({ key: this.map });
+        this.tileset = this.map.addTilesetImage("base", "base");
         this.map.createStaticLayer("Under1", this.tileset, 0, 0);
         this.map.createStaticLayer("Under2", this.tileset, 0, 0);
 
