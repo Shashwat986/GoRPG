@@ -1,4 +1,5 @@
-import Player from '../sprites/Player.js';
+import Player from '../classes/Player.js';
+import ActionArea from '../classes/ActionArea.js';
 
 class GameScene extends Phaser.Scene {
     constructor(test) {
@@ -18,6 +19,7 @@ class GameScene extends Phaser.Scene {
     create () {
         this.createMap();
         this.createPlayer();
+        this.createActionAreas();
         this.setCamera();
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -45,6 +47,27 @@ class GameScene extends Phaser.Scene {
     createPlayer () {
         let spawnPoint = this.map.findObject("Objects", obj => obj.name === "PlayerStart");
         this.player = new Player(this, spawnPoint.x, spawnPoint.y)
+    }
+
+    createActionAreas () {
+        this.actionAreas = this.physics.add.group()
+
+        this.map.filterObjects("Objects", (obj) => {
+            if (obj.type !== "Interaction") {
+                return false;
+            }
+
+            let actionArea = new ActionArea(this, obj);
+            this.actionAreas.add(actionArea);
+
+            return true;
+        });
+
+        this.physics.add.overlap(this.player, this.actionAreas, this.performAction);
+    }
+
+    performAction (player, zone) {
+        console.log(player, zone);
     }
 
     setCamera () {
