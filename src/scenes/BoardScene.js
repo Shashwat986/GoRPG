@@ -7,11 +7,7 @@ class BoardScene extends Phaser.Scene {
         super({
             key: 'BoardScene',
             cameras: {
-                x: 32*2,
-                y: 32*2,
-                width: 32*20,
-                height: 32*16,
-                backgroundColor: '#770000'
+                backgroundColor: 'rgba(0,0,0,0.5)'
             }
         });
     }
@@ -30,8 +26,10 @@ class BoardScene extends Phaser.Scene {
         const domWidth = this.cameras.main.width * 0.8;
         const domHeight = this.cameras.main.height * 0.8;
         this.add.dom(screenCenterX, screenCenterY).createFromHTML(`
-            <div style="background-color: gray; width: ${domWidth}px; height: ${domHeight}px;">
-                <div class="tenuki-board"></div>
+            <div style="position: relative;background-color: #7f0000; width: ${domWidth}px; height: ${domHeight}px;">
+                <div style="width: 80%; height: 80%; top: 10%; left: 5%; position: absolute;">
+                    <div class="tenuki-board"></div>
+                </div>
             </div>
         `)
         var boardElement = document.querySelector(".tenuki-board");
