@@ -30,26 +30,6 @@ export default class Board extends Phaser.GameObjects.DOMElement {
         style.height = domHeight + 'px';
         this.updateSize()
 
-//      let boardElement = document.querySelector(".tenuki-board");
-//      this.game = new tenuki.Game({
-//          element: boardElement,
-//          boardSize: data.boardSize
-//      });
-
-//      if (data.setup != null) {
-//          this.setup(data.setup)
-//      }
-
         scene.add.existing(this);
     }
-
-    setup (moves) {
-        for (let elem of moves) {
-            if (elem === "pass")
-                this.game.pass()
-            else
-                this.game.playAt.apply(this.game, elem);
-        }
-    }
-
 }
