@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+var VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 var definePlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
@@ -16,6 +17,11 @@ module.exports = {
         publicPath: './public/'
     },
     watch: true,
+//  resolve: {
+//      alias: {
+//          'vue$': 'vue/dist/vue.esm.js'
+//      }
+//  },
     plugins: [
         definePlugin,
         new HtmlWebpackPlugin({
@@ -29,11 +35,13 @@ module.exports = {
             server: {
                 baseDir: ['./']
             }
-        })
+        }),
+        new VueLoaderPlugin()
     ],
     module: {
         rules: [
-            { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') }
+            { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
+            { test: /\.vue$/, use: ['vue-loader'], include: path.join(__dirname, 'src') }
         ]
     }
 }

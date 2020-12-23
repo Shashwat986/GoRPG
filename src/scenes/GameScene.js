@@ -9,11 +9,11 @@ class GameScene extends Phaser.Scene {
     }
 
     init (data) {
-        this.map = 'field';
+        this.mapName = data.mapName;
     }
 
     preload () {
-        this.load.tilemapTiledJSON(this.map, "assets/" + this.map + ".json");
+        this.load.tilemapTiledJSON(this.mapName, "assets/" + this.mapName + ".json");
     }
 
     create () {
@@ -23,14 +23,19 @@ class GameScene extends Phaser.Scene {
         this.setCamera();
 
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.sys.events.on("wake", () => {
+            this.input.keyboard.resetKeys()
+        })
     }
 
     update () {
         this.player.update(this.cursors);
     }
 
+
     createMap () {
-        this.map = this.make.tilemap({ key: this.map });
+        this.map = this.make.tilemap({ key: this.mapName });
         this.tileset = this.map.addTilesetImage("base", "base");
         this.map.createStaticLayer("Under1", this.tileset, 0, 0);
         this.map.createStaticLayer("Under2", this.tileset, 0, 0);

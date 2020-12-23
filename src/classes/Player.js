@@ -11,12 +11,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     update (cursors) {
+        if (!this.body.embedded && this.body.touching.none)
+            this.interactingWithActionArea = false
+
+        console.log(this.interactingWithActionArea)
+
+        this.body.setVelocityX(0);
+        this.body.setVelocityY(0);
+
         if (cursors.left.isDown) {
             this.body.setVelocityX(-200);
         } else if (cursors.right.isDown) {
             this.body.setVelocityX(200);
         } else {
-            this.body.setVelocityX(0);
         }
 
         if (cursors.up.isDown) {
@@ -24,7 +31,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         } else if (cursors.down.isDown) {
             this.body.setVelocityY(200);
         } else {
-            this.body.setVelocityY(0);
         }
     }
 }

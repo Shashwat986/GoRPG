@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="6" nextobjectid="6">
  <editorsettings>
-  <export target="field.json" format="json"/>
+  <export target="Start.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="base" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
   <image source="base.png" width="256" height="4256"/>
@@ -38,13 +38,13 @@
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,49,49,49,
-0,0,0,0,0,0,0,167,0,173,0,0,0,0,49,49,
+0,0,0,0,0,0,0,958,0,173,0,0,0,0,49,49,
 0,0,0,0,0,0,0,0,0,0,0,0,0,49,49,49,
 0,0,0,0,0,0,0,0,0,0,0,0,49,49,49,49,
 0,0,157,0,0,0,0,0,0,0,0,0,49,49,49,49,
 0,0,0,0,0,0,157,0,0,0,0,49,49,164,49,49,
-0,0,0,0,0,0,0,0,0,0,0,0,49,49,49,49,
-0,0,0,0,0,0,0,1028,0,0,173,61,0,49,49,49,
+0,0,0,0,0,0,0,0,0,0,0,0,49,67,49,49,
+0,0,0,0,0,0,0,954,0,0,173,61,0,49,49,49,
 0,0,0,0,0,160,0,0,0,0,0,0,0,49,49,49,
 0,0,0,0,0,0,0,0,0,0,0,0,0,49,49,49,
 0,157,0,0,0,0,0,0,0,0,0,0,0,0,49,49,
@@ -81,7 +81,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="4" name="Over" width="16" height="16">
+ <layer id="4" name="Over" width="16" height="16" locked="1">
   <properties>
    <property name="collides" type="bool" value="false"/>
   </properties>
@@ -91,8 +91,8 @@
   <object id="1" name="PlayerStart" type="Spawn" x="401" y="329">
    <point/>
   </object>
-  <object id="3" name="OpenBoard1" type="Interaction" x="417.684" y="164.134" width="26.9474" height="55.1196"/>
-  <object id="4" name="OpenBoard2" type="Interaction" x="226.603" y="34.2967" width="24.4976" height="25.7225"/>
-  <object id="5" name="OpenBoard3" type="Interaction" x="226.603" y="226.603" width="24.4976" height="25.7225"/>
+  <object id="3" name="OpenBoard1" type="Interaction" x="417.684" y="194.029" width="26.9474" height="25.2243"/>
+  <object id="4" name="OpenBoard2" type="Interaction" x="226.603" y="34.2967" width="24.4976" height="16.3802"/>
+  <object id="5" name="OpenBoard3" type="Interaction" x="226.603" y="226.603" width="24.4976" height="14.5117"/>
  </objectgroup>
 </map>

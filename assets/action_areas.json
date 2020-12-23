@@ -1,0 +1,20 @@
+{
+  "Start.OpenBoard3": {
+    "type": "Tutorial",
+    "boardSize": 5,
+    "title": "Learn the Rules",
+    "instructions": [
+      {
+        "setup": [
+          [1, 2],
+          "pass",
+          [2, 1],
+          "pass",
+          [3, 2],
+          [2, 2]
+        ],
+        "text": "The empty spots next to a stone, connected by a line are called its liberties"
+      }
+    ]
+  }
+}

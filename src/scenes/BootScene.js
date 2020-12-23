@@ -20,7 +20,7 @@ class BootScene extends Phaser.Scene {
         this.load.on('complete', () => {
             progress.destroy();
             this.scene.start('GameScene', {
-                scene: "Start"
+                mapName: "Start"
             });
         });
 
@@ -29,6 +29,10 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+
+        this.load.image('cross', 'assets/cross.svg')
+
+        this.load.json('actionAreas', 'assets/action_areas.json');
     }
 
     create () {

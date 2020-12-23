@@ -13,32 +13,31 @@ class BoardScene extends Phaser.Scene {
     }
 
     init (data) {
+        this.data = data
     }
 
     preload () {
         this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
         this.screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-
-        this.load.text("board", "assets/Board.html");
     }
 
     create () {
+        this.input.keyboard.enabled = false
         this.board = new Board(this, {
             x: this.screenCenterX,
             y: this.screenCenterY,
             w: 0.9,
             h: 0.9,
-            key: "board",
-            boardSize: 5,
-            title: "Let's Play",
-            setup: [
-                [1, 2],
-                "pass",
-                [2, 1],
-                "pass",
-                [3, 2],
-                [2, 2]
-            ]
+            data: this.data
+        });
+
+        let img = this.add.image(this.sys.game.config.width - 32, 32, 'cross');
+        img.displayWidth = 48;
+        img.displayHeight = 48;
+        img.setInteractive();
+        img.on('pointerup', () => {
+            this.scene.stop();
+            this.scene.wake('GameScene');
         });
     }
 

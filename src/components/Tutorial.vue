@@ -1,0 +1,19 @@
+<template>
+<div style="position: relative; background: url(/assets/bg.png); background-size: 100% 100%; width: 100%; height: 100%;">
+  <div style="width: 45%; height: 80%; top: 10%; left: 5%; position: absolute;">
+    <div class="tenuki-board"></div>
+  </div>
+  <div style="left: 55%; top: 10%; height: 80%; width: 45%; position: absolute;">
+    <div>
+      {{data.title}}
+    </div>
+    <button onclick="console.log(this)">adsf</button>
+  </div>
+</div>
+</template>
+
+<script>
+export default {
+  props: ['data']
+}
+</script>
