@@ -3,6 +3,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 var VueLoaderPlugin = require('vue-loader/lib/plugin')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 var definePlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
@@ -36,12 +37,15 @@ module.exports = {
                 baseDir: ['./']
             }
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin()
     ],
     module: {
         rules: [
             { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
-            { test: /\.vue$/, use: ['vue-loader'], include: path.join(__dirname, 'src') }
+            { test: /\.vue$/, use: ['vue-loader'], include: path.join(__dirname, 'src') },
+            { test: /\.css$/, use: ['vue-style-loader', MiniCssExtractPlugin.loader, 'css-loader'], include: path.join(__dirname, 'src') },
+            { test: /\.scss$/, use: ['vue-style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'], include: path.join(__dirname, 'src') }
         ]
     }
 }

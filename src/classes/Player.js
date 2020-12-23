@@ -14,8 +14,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (!this.body.embedded && this.body.touching.none)
             this.interactingWithActionArea = false
 
-        console.log(this.interactingWithActionArea)
-
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
 

@@ -14,6 +14,17 @@
           [2, 2]
         ],
         "text": "The empty spots next to a stone, connected by a line are called its liberties"
+      },
+      {
+        "setup": [
+          [1, 2],
+          "pass",
+          [2, 1],
+          [2, 2],
+          [3, 2],
+          [2, 3]
+        ],
+        "text": "If white plays at the extra liberty point, white will be able to escape. This is because connected stones share liberties"
       }
     ]
   }
