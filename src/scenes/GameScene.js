@@ -62,12 +62,6 @@ class GameScene extends Phaser.Scene {
 
             return true;
         });
-
-        this.physics.add.overlap(this.player, this.actionAreas, this.performAction);
-    }
-
-    performAction (player, zone) {
-        console.log(player, zone);
     }
 
     setCamera () {

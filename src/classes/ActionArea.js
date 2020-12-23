@@ -14,13 +14,16 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
     }
 
     performAction (player, zone) {
-        console.log(zone.name)
         switch (zone.name) {
             case 'OpenBoard1':
                 this.scene.scene.pause()
                 this.scene.scene.run('BoardScene')
                 break;
             case 'OpenBoard2':
+                this.scene.scene.pause()
+                this.scene.scene.run('BoardScene')
+                break;
+            case 'OpenBoard3':
                 this.scene.scene.pause()
                 this.scene.scene.run('BoardScene')
                 break;

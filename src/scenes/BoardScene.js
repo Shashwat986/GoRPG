@@ -1,6 +1,6 @@
 import Player from '../classes/Player.js';
 import ActionArea from '../classes/ActionArea.js';
-import tenuki from 'tenuki'
+import Board from '../classes/Board.js';
 
 class BoardScene extends Phaser.Scene {
     constructor(test) {
@@ -13,40 +13,33 @@ class BoardScene extends Phaser.Scene {
     }
 
     init (data) {
-        console.log("Here");
     }
 
     preload () {
+        this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+        this.screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+
+        this.load.text("board", "assets/Board.html");
     }
 
     create () {
-        const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
-        const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-
-        const domWidth = this.cameras.main.width * 0.8;
-        const domHeight = this.cameras.main.height * 0.8;
-        this.add.dom(screenCenterX, screenCenterY).createFromHTML(`
-            <div style="position: relative;background-color: #7f0000; width: ${domWidth}px; height: ${domHeight}px;">
-                <div style="width: 80%; height: 80%; top: 10%; left: 5%; position: absolute;">
-                    <div class="tenuki-board"></div>
-                </div>
-            </div>
-        `)
-        var boardElement = document.querySelector(".tenuki-board");
-        var game = new tenuki.Game({
-            element: boardElement,
-            boardSize: 19
+        this.board = new Board(this, {
+            x: this.screenCenterX,
+            y: this.screenCenterY,
+            w: 0.9,
+            h: 0.9,
+            key: "board",
+            boardSize: 5,
+            title: "Let's Play",
+            setup: [
+                [1, 2],
+                "pass",
+                [2, 1],
+                "pass",
+                [3, 2],
+                [2, 2]
+            ]
         });
-
-        this.add.text(
-            screenCenterX,
-            this.cameras.main.worldView.y + 10,
-            "Let's Play!",
-            {
-                fontFamily: "sans-serif",
-                fontSize: "25px"
-            }
-        ).setOrigin(0.5, 0);
     }
 
     update () {
