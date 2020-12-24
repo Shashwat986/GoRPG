@@ -9,7 +9,7 @@ if git diff-index --quiet HEAD --; then
         git add --force index.html
         git add --force public/*
         git commit -m "Deploy"
-        git push origin gh-pages
+        git push --force origin gh-pages
         git checkout master
     else
         echo "Not on Master. Please go to master"
