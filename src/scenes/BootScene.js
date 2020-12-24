@@ -30,7 +30,13 @@ class BootScene extends Phaser.Scene {
             frameHeight: 32
         });
 
+        this.load.spritesheet('player', 'assets/player_sprite.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+
         this.load.image('cross', 'assets/cross.svg')
+        this.load.image('bg', 'assets/bg.png')
 
         this.load.json('actionAreas', 'assets/action_areas.json');
     }

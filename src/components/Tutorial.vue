@@ -15,7 +15,10 @@
     </div>
     <div>
       <button
-        @click="nextInstruction"
+        @click="updateInstruction(-1)"
+        :disabled="(instructionID == 0)">Previous</button>
+      <button
+        @click="updateInstruction(1)"
         :disabled="!(instructionID < data.instructions.length - 1)">Next</button>
       <button
         @click="setupBoard">Reset</button>
@@ -40,8 +43,8 @@ export default {
     }
   },
   methods: {
-    nextInstruction () {
-      this.instructionID += 1;
+    updateInstruction (delta) {
+      this.instructionID += delta;
       this.setupBoard()
     },
     setupBoard() {
