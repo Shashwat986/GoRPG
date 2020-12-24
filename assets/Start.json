@@ -170,8 +170,8 @@
                  "type":"Spawn",
                  "visible":true,
                  "width":0,
-                 "x":466.18086696562,
-                 "y":204.596412556054
+                 "x":466.181,
+                 "y":204.596
                 }],
          "opacity":1,
          "type":"objectgroup",
