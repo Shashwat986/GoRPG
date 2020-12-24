@@ -5,7 +5,8 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode=development"
+    "dev": "webpack --mode=development",
+    "compile": "webpack --mode=production --config webpack.production.js"
   },
   "license": "MIT",
   "devDependencies": {
