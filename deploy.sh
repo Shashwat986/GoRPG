@@ -1,7 +1,7 @@
 #!/bin/bash
 if git diff-index --quiet HEAD --; then
     branch=$(git symbolic-ref --short -q HEAD)
-    if [ branch = 'master' ]; then
+    if [ $branch = 'master' ]; then
         # No changes
         git checkout gh-pages
         git reset --hard master
