@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="6" nextobjectid="6">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="6" nextobjectid="7">
  <editorsettings>
   <export target="Start.json" format="json"/>
  </editorsettings>
@@ -91,8 +91,11 @@
   <object id="1" name="PlayerStart" type="Spawn" x="401" y="329">
    <point/>
   </object>
-  <object id="3" name="OpenBoard1" type="Interaction" x="417.684" y="194.029" width="26.9474" height="25.2243"/>
+  <object id="3" name="House" type="Portal" x="417.684" y="194.029" width="26.9474" height="25.2243"/>
   <object id="4" name="OpenBoard2" type="Interaction" x="226.603" y="34.2967" width="24.4976" height="16.3802"/>
   <object id="5" name="OpenBoard3" type="Interaction" x="226.603" y="226.603" width="24.4976" height="14.5117"/>
+  <object id="6" name="House" type="Spawn" x="466.181" y="204.596">
+   <point/>
+  </object>
  </objectgroup>
 </map>

@@ -20,7 +20,8 @@ class BootScene extends Phaser.Scene {
         this.load.on('complete', () => {
             progress.destroy();
             this.scene.start('GameScene', {
-                mapName: "Start"
+                mapName: "Start",
+                playerStart: "PlayerStart"
             });
         });
 

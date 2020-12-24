@@ -15,17 +15,25 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
     }
 
     performAction (player, zone) {
+        // Note: zone === this
         if (player.interactingWithActionArea)
             return;
 
         let jsonKey = this.scene.mapName + "." + zone.name;
         let properties = this.scene.cache.json.get('actionAreas')[jsonKey]
 
-        this.scene.scene.pause()
-        this.scene.scene.run('BoardScene', {
-            ...properties,
-            key: jsonKey
-        })
+        if (this.type === "Interaction") {
+            this.scene.scene.pause()
+            this.scene.scene.run('BoardScene', {
+                ...properties,
+                key: jsonKey
+            })
+        } else if (this.type === "Portal") {
+            this.scene.scene.start('GameScene', {
+                mapName: zone.name,
+                playerStart: this.scene.mapName
+            });
+        }
 
         player.interactingWithActionArea = this.name;
     }

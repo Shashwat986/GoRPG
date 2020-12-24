@@ -10,6 +10,7 @@ class GameScene extends Phaser.Scene {
 
     init (data) {
         this.mapName = data.mapName;
+        this.playerStart = data.playerStart;
     }
 
     preload () {
@@ -50,7 +51,7 @@ class GameScene extends Phaser.Scene {
     }
 
     createPlayer () {
-        let spawnPoint = this.map.findObject("Objects", obj => obj.name === "PlayerStart");
+        let spawnPoint = this.map.findObject("Objects", obj => obj.name === this.playerStart && obj.type === "Spawn");
         this.player = new Player(this, spawnPoint.x, spawnPoint.y)
     }
 
@@ -58,14 +59,13 @@ class GameScene extends Phaser.Scene {
         this.actionAreas = this.physics.add.group()
 
         this.map.filterObjects("Objects", (obj) => {
-            if (obj.type !== "Interaction") {
-                return false;
+            if ( ["Interaction", "Portal"].includes(obj.type) ) {
+                let actionArea = new ActionArea(this, obj);
+                this.actionAreas.add(actionArea);
+                return true;
             }
 
-            let actionArea = new ActionArea(this, obj);
-            this.actionAreas.add(actionArea);
-
-            return true;
+            return false;
         });
     }
 

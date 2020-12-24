@@ -131,9 +131,9 @@
                 {
                  "height":25.2243,
                  "id":3,
-                 "name":"OpenBoard1",
+                 "name":"House",
                  "rotation":0,
-                 "type":"Interaction",
+                 "type":"Portal",
                  "visible":true,
                  "width":26.9474,
                  "x":417.684,
@@ -160,6 +160,18 @@
                  "width":24.4976,
                  "x":226.603,
                  "y":226.603
+                }, 
+                {
+                 "height":0,
+                 "id":6,
+                 "name":"House",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Spawn",
+                 "visible":true,
+                 "width":0,
+                 "x":466.18086696562,
+                 "y":204.596412556054
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -168,7 +180,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":6,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
