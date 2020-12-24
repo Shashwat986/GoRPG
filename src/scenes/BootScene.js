@@ -1,3 +1,5 @@
+import store from '../store';
+
 class BootScene extends Phaser.Scene {
     constructor(test) {
         super({
@@ -5,6 +7,7 @@ class BootScene extends Phaser.Scene {
         });
     }
     preload() {
+        this.store = store;
         // Progress Bar
         const progress = this.add.graphics();
         this.add.text(32*7, 32*8, "Loading... Please Wait", {
@@ -19,6 +22,13 @@ class BootScene extends Phaser.Scene {
 
         this.load.on('complete', () => {
             progress.destroy();
+            if (this.store.state.synced) {
+                this.scene.start('GameScene', {
+                    mapName: this.store.state.mapName,
+                    playerStart: [ this.store.state.playerX, this.store.state.playerY ]
+                });
+                return;
+            }
             this.scene.start('GameScene', {
                 mapName: "Start",
                 playerStart: "PlayerStart"

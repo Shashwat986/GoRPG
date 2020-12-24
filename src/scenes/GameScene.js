@@ -1,5 +1,6 @@
 import Player from '../classes/Player.js';
 import ActionArea from '../classes/ActionArea.js';
+import store from '../store';
 
 class GameScene extends Phaser.Scene {
     constructor(test) {
@@ -11,6 +12,7 @@ class GameScene extends Phaser.Scene {
     init (data) {
         this.mapName = data.mapName;
         this.playerStart = data.playerStart;
+        this.store = store;
     }
 
     preload () {
@@ -32,6 +34,11 @@ class GameScene extends Phaser.Scene {
 
     update () {
         this.player.update(this.cursors);
+        this.store.commit('setPlayer', {
+            x: this.player.x,
+            y: this.player.y,
+            mapName: this.mapName
+        });
     }
 
 
@@ -51,7 +58,16 @@ class GameScene extends Phaser.Scene {
     }
 
     createPlayer () {
-        let spawnPoint = this.map.findObject("Objects", obj => obj.name === this.playerStart && obj.type === "Spawn");
+        let spawnPoint = null;
+        if (Array.isArray(this.playerStart)) {
+            spawnPoint = {
+                x: this.playerStart[0],
+                y: this.playerStart[1]
+            }
+        } else {
+            spawnPoint = this.map.findObject("Objects", obj => obj.name === this.playerStart && obj.type === "Spawn");
+        }
+
         this.player = new Player(this, spawnPoint.x, spawnPoint.y)
     }
 
