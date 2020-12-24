@@ -29,10 +29,14 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
                 key: jsonKey
             })
         } else if (this.type === "Portal") {
-            this.scene.scene.start('GameScene', {
-                mapName: zone.name,
-                playerStart: this.scene.mapName
-            });
+            this.scene.camera.fadeOut(300, 0, 0, 0, (c, progress) => {
+                if (progress >= 0.9) {
+                    this.scene.scene.start('GameScene', {
+                        mapName: zone.name,
+                        playerStart: this.scene.mapName
+                    });
+                }
+            })
         }
 
         player.interactingWithActionArea = this.name;
