@@ -1,7 +1,7 @@
 <template>
 <div style="position: relative; width: 100%; height: 100%;">
   <div style="width: 45%; height: 80%; top: 10%; left: 5%; position: absolute;">
-    <div class="tenuki-board" ref="board"></div>
+    <div class="besogo-editor tenuki-board" ref="board" panels="">(;FF[4]GM[1]SZ[5]AB[bc][cb][cd]AW[cc])</div>
   </div>
   <div style="left: 55%; top: 10%; height: 80%; width: 40%; position: absolute;">
     <div>
@@ -65,7 +65,10 @@ export default {
     }
   },
   mounted () {
-    this.setupBoard()
+    // this.setupBoard()
+    this.$nextTick(() => {
+      besogo.autoInit()
+    })
   }
 }
 </script>
