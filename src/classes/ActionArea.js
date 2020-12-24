@@ -22,7 +22,10 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
         let properties = this.scene.cache.json.get('actionAreas')[jsonKey]
 
         this.scene.scene.pause()
-        this.scene.scene.run('BoardScene', properties)
+        this.scene.scene.run('BoardScene', {
+            ...properties,
+            key: jsonKey
+        })
 
         player.interactingWithActionArea = this.name;
     }

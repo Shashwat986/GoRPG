@@ -1,5 +1,5 @@
 <template>
-<div style="position: relative; background: url(/assets/bg.png); background-size: 100% 100%; width: 100%; height: 100%;">
+<div style="position: relative; width: 100%; height: 100%;">
   <div style="width: 45%; height: 80%; top: 10%; left: 5%; position: absolute;">
     <div class="tenuki-board" ref="board"></div>
   </div>
