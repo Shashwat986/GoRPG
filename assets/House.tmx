@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="6" nextobjectid="9">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="1" nextlayerid="6" nextobjectid="10">
  <editorsettings>
   <export target="House.json" format="json"/>
  </editorsettings>
@@ -112,5 +112,6 @@
   </object>
   <object id="7" name="Start" type="Portal" x="228.886" y="32.6981" width="22.4215" height="23.3558"/>
   <object id="8" name="OpenBoard1" type="Interaction" x="42.0404" y="160.688" width="14.0135" height="16.8161"/>
+  <object id="9" name="BlockPath" type="Notification" x="342.862" y="239.163" width="26.1584" height="99.9626"/>
  </objectgroup>
 </map>

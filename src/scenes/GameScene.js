@@ -111,7 +111,7 @@ class GameScene extends Phaser.Scene {
         this.actionAreas = this.physics.add.group()
 
         this.map.filterObjects("Objects", (obj) => {
-            if ( ["Interaction", "Portal"].includes(obj.type) ) {
+            if (!["Spawn"].includes(obj.type) ) {
                 let actionArea = new ActionArea(this, obj);
                 this.actionAreas.add(actionArea);
                 return true;

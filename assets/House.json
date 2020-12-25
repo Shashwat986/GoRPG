@@ -132,8 +132,8 @@
                  "type":"Spawn",
                  "visible":true,
                  "width":0,
-                 "x":241.031562032885,
-                 "y":86.8833964125561
+                 "x":241.032,
+                 "y":86.8834
                 }, 
                 {
                  "height":23.3558,
@@ -156,6 +156,17 @@
                  "width":14.0135,
                  "x":42.0404,
                  "y":160.688
+                }, 
+                {
+                 "height":99.9626307922272,
+                 "id":9,
+                 "name":"BlockPath",
+                 "rotation":0,
+                 "type":"Notification",
+                 "visible":true,
+                 "width":26.1584454409567,
+                 "x":342.862481315396,
+                 "y":239.162929745889
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -164,7 +175,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":9,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",

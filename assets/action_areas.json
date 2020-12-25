@@ -27,5 +27,9 @@
         "text": "If white plays at the extra liberty point, white will be able to escape. This is because connected stones share liberties"
       }
     ]
+  },
+
+  "House.BlockPath": {
+    "text": "The path is blocked"
   }
 }

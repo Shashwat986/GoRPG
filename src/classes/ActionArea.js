@@ -28,6 +28,8 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
                 ...properties,
                 key: jsonKey
             })
+        } else if (this.type === "Notification") {
+            this.scene.showNotification(properties.text)
         } else if (this.type === "Portal") {
             this.scene.camera.fadeOut(300, 0, 0, 0, (c, progress) => {
                 if (progress >= 0.9) {
