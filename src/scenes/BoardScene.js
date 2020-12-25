@@ -1,6 +1,6 @@
 import Player from '../classes/Player.js';
 import ActionArea from '../classes/ActionArea.js';
-import Board from '../classes/Board.js';
+import DOM from '../classes/DOM.js';
 
 class BoardScene extends Phaser.Scene {
     constructor(test) {
@@ -23,7 +23,7 @@ class BoardScene extends Phaser.Scene {
 
     create () {
         this.input.keyboard.enabled = false
-        this.board = new Board(this, {
+        this.board = new DOM(this, {
             x: this.screenCenterX,
             y: this.screenCenterY,
             w: 0.85,

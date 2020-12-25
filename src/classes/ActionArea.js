@@ -1,3 +1,5 @@
+import actionAreas from '../actionAreas.js'
+
 export default class ActionArea extends Phaser.GameObjects.Zone {
     constructor(scene, obj) {
         super(scene, obj.x, obj.y, obj.width, obj.height);
@@ -20,7 +22,7 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
             return;
 
         let jsonKey = this.scene.mapName + "." + zone.name;
-        let properties = this.scene.cache.json.get('actionAreas')[jsonKey]
+        let properties = actionAreas[jsonKey]
 
         if (this.type === "Interaction") {
             this.scene.scene.pause()

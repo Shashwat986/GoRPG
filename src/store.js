@@ -16,11 +16,14 @@ export default new Vuex.Store({
         mapName: null
     },
     mutations: {
-        setPlayer(state, {x, y, mapName}) {
+        setPlayer (state, {x, y, mapName}) {
             state.synced = true;
             state.playerX = x;
             state.playerY = y;
             state.mapName = mapName;
+        },
+        clear (state) {
+            state.synced = false;
         }
     },
     actions: {

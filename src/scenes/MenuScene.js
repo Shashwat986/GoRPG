@@ -56,9 +56,10 @@ class MenuScene extends Phaser.Scene {
                 }
             },
             {
-                text: "Placeholder",
+                text: "Restart",
                 onclick: function () {
-                    console.log(this)
+                    this.oldScene.store.commit('clear');
+                    window.location.reload()
                 }
             },
             {

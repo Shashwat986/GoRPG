@@ -1,4 +1,4 @@
-{
+export default {
   "Start.OpenBoard3": {
     "type": "Tutorial",
     "boardSize": 5,

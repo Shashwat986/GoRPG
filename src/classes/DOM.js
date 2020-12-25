@@ -1,14 +1,14 @@
 import tenuki from 'tenuki';
-import BoardScene from '../components/BoardScene.vue';
+import Base from '../components/Base.vue';
 import Vue from 'vue';
 
-export default class Board extends Phaser.GameObjects.DOMElement {
+export default class DOM extends Phaser.GameObjects.DOMElement {
     constructor(scene, data) {
         super(scene, data.x, data.y)
 
         this.createElement('div')
         this.vue = new Vue({
-            render: h => h(BoardScene, {
+            render: h => h(Base, {
                 attrs: {
                     data: data.data
                 }
