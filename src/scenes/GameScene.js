@@ -30,17 +30,53 @@ class GameScene extends Phaser.Scene {
         this.sys.events.on("wake", () => {
             this.input.keyboard.resetKeys()
         })
+
+        let img = this.add.image(216, 186, 'menu')
+            .setScrollFactor(0)
+            .setDepth(20)
+            .setDisplaySize(24, 24)
+            .setInteractive();
+
+        img.on('pointerover', () => {
+            img.displayWidth = 28;
+            img.displayHeight = 28;
+        });
+        img.on('pointerout', () => {
+            img.displayWidth = 24;
+            img.displayHeight = 24;
+        });
+        img.on('pointerup', () => {
+            this.scene.pause()
+            this.scene.run('MenuScene', this)
+        });
     }
 
     update () {
         this.player.update(this.cursors);
-        this.store.commit('setPlayer', {
-            x: this.player.x,
-            y: this.player.y,
-            mapName: this.mapName
-        });
     }
 
+    showNotification (text) {
+        let screenCenterX = 32*12
+        let screenCenterY = 32*14
+        if (this.notificationText) {
+            this.notificationText.setText(text).setVisible(true);
+        } else {
+            this.notificationText = this.add.text(screenCenterX, screenCenterY, text, {
+                    backgroundColor: "#eeddbb",
+                    color: "#663300",
+                    padding: { x: 20, y: 8 }
+                })
+                .setDepth(20)
+                .setOrigin(0.5, 0.5)
+                .setScrollFactor(0);
+        }
+
+        setTimeout(() => {
+            this.notificationText.destroy();
+            this.notificationText = null;
+        }, 2000)
+
+    }
 
     createMap () {
         this.map = this.make.tilemap({ key: this.mapName });

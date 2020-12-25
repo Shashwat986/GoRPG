@@ -47,6 +47,7 @@ class BootScene extends Phaser.Scene {
         });
 
         this.load.image('cross', 'assets/cross.svg')
+        this.load.image('menu', 'assets/menu.png')
         this.load.image('bg', 'assets/bg.png')
 
         this.load.json('actionAreas', 'assets/action_areas.json');

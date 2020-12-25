@@ -26,19 +26,18 @@ class BoardScene extends Phaser.Scene {
         this.board = new Board(this, {
             x: this.screenCenterX,
             y: this.screenCenterY,
-            w: 0.9,
-            h: 0.9,
+            w: 0.85,
+            h: 0.85,
             data: this.data
         });
 
-        let img = this.add.image(this.sys.game.config.width - 32, 32, 'cross');
-        img.displayWidth = 48;
-        img.displayHeight = 48;
-        img.setInteractive();
-        img.on('pointerup', () => {
-            this.scene.stop();
-            this.scene.wake('GameScene');
-        });
+        this.add.image(this.sys.game.config.width - 48, 48, 'cross')
+            .setDisplaySize(32, 32)
+            .setInteractive()
+            .on('pointerup', () => {
+                this.scene.stop();
+                this.scene.wake('GameScene');
+            });
     }
 
     update () {
