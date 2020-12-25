@@ -16,6 +16,7 @@
     - `BootScene.js`: Boot Scene
     - `GameScene.js`: Scene for all maps. Renders all action areas within the map
     - `MenuScene.js`: Scene to show the menu
+  - `actionAreas.js`: This contains the configuration for all the action areas
   - `store.js`: Vuex store (with Vuex-persist, this takes care of saving and persisting the current state
 
 
