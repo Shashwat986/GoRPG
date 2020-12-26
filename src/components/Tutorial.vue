@@ -1,7 +1,11 @@
 <template>
 <div style="position: relative; width: 100%; height: 100%;">
   <div style="width: 45%; height: 80%; top: 10%; left: 5%; position: absolute;">
-    <div class="besogo-editor tenuki-board" ref="board" panels="">(;FF[4]GM[1]SZ[5]AB[bc][cb][cd]AW[cc])</div>
+    <div
+      class="game-board"
+      ref="board"
+      panels="control">
+    </div>
   </div>
   <div style="left: 55%; top: 10%; height: 80%; width: 40%; position: absolute;">
     <div>
@@ -9,10 +13,7 @@
         {{data.title}}
       </h2>
     </div>
-    <div>
-      {{ currentInstruction.text }}
-
-    </div>
+    <div v-html="currentInstruction.text"></div>
     <div>
       <button
         @click="updateInstruction(-1)"
@@ -48,34 +49,31 @@ export default {
       this.setupBoard()
     },
     setupBoard() {
-      this.$refs.board.innerHTML = "";
-      this.game = new Game({
-        element: this.$refs.board,
-        boardSize: this.data.boardSize
+      this.$refs.board.innerHTML = this.currentInstruction.sgf;
+
+      this.board = besogo.create(this.$refs.board, {
+        panels: [],
+        tool: this.currentInstruction.editor,
+        path: this.currentInstruction.path,
+        nowheel: true
       })
-
-      for (let elem of this.currentInstruction.setup) {
-        if (elem === "pass") {
-          this.game.pass()
-        } else {
-          this.game.playAt.apply(this.game, elem)
-        }
-      }
-
     }
   },
   mounted () {
-    // this.setupBoard()
     this.$nextTick(() => {
-      besogo.autoInit()
+      this.setupBoard()
     })
   }
 }
 </script>
 
 <style lang="scss">
-  .tenuki-board {
+  .game-board {
     width: 100% !important;
     height: 100% !important;
+  }
+
+  .game-board.besogo-container {
+    background: inherit;
   }
 </style>
