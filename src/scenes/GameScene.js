@@ -156,6 +156,7 @@ class GameScene extends Phaser.Scene {
             return this.actionAreaConfig[zone.name].properties
         }
 
+        // Required to prevent caching(?) at BoardScene.init
         return {}
     }
 }

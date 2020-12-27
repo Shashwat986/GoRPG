@@ -27,10 +27,7 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
 
         if (this.type === "Interaction") {
             this.scene.scene.pause()
-            this.scene.scene.run('BoardScene', {
-                ...properties,
-                key: this.name  // Required to prevent caching(?) at BoardScene.init
-            });
+            this.scene.scene.run('BoardScene', properties);
         } else if (this.type === "Notification") {
             this.scene.showNotification(properties.text)
         } else if (this.type === "Portal") {
