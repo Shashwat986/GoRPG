@@ -63,6 +63,10 @@ class GameScene extends Phaser.Scene {
         let screenCenterY = 32*14
         if (this.notificationText) {
             this.notificationText.setText(text).setVisible(true);
+
+            if (this.notificationTimeout) {
+                clearTimeout(this.notificationTimeout);
+            }
         } else {
             this.notificationText = this.add.text(screenCenterX, screenCenterY, text, {
                     backgroundColor: "#eeddbb",
@@ -74,11 +78,11 @@ class GameScene extends Phaser.Scene {
                 .setScrollFactor(0);
         }
 
-        setTimeout(() => {
+        this.notificationTimeout = setTimeout(() => {
             this.notificationText.destroy();
             this.notificationText = null;
+            this.notificationTimeout = null;
         }, 2000)
-
     }
 
     createMap () {
