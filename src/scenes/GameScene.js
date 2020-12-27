@@ -1,6 +1,7 @@
 import Player from '../classes/Player.js';
 import ActionArea from '../classes/ActionArea.js';
 import store from '../store';
+import baseActionAreaConfig from '../sceneData/index.js';
 
 class GameScene extends Phaser.Scene {
     constructor(test) {
@@ -12,7 +13,9 @@ class GameScene extends Phaser.Scene {
     init (data) {
         this.mapName = data.mapName;
         this.playerStart = data.playerStart;
+
         this.store = store;
+        this.actionAreaConfig = baseActionAreaConfig[this.mapName]
     }
 
     preload () {
@@ -126,6 +129,30 @@ class GameScene extends Phaser.Scene {
         this.camera.startFollow(this.player);
         this.camera.setZoom(2);
         this.camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    }
+
+    // ActionAreaHelpers
+
+    beforeAction (zone) {
+        if (
+            this.actionAreaConfig[zone.name] &&
+            this.actionAreaConfig[zone.name].beforeAction
+        ) {
+            return this.actionAreaConfig[zone.name].beforeAction.apply(this);
+        }
+
+        return true;
+    }
+
+    getProperties (zone) {
+        if (
+            this.actionAreaConfig[zone.name] &&
+            this.actionAreaConfig[zone.name].properties != null
+        ) {
+            return this.actionAreaConfig[zone.name].properties
+        }
+
+        return {}
     }
 }
 
