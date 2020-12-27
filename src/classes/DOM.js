@@ -1,4 +1,3 @@
-import tenuki from 'tenuki';
 import Base from '../components/Base.vue';
 import Vue from 'vue';
 

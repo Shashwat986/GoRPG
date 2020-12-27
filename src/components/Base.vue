@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { Game } from 'tenuki';
 import Tutorial from './Tutorial.vue';
 
 export default {

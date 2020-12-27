@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { Game } from 'tenuki';
 export default {
   props: ['data'],
   data () {
