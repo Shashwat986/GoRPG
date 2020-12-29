@@ -47,6 +47,9 @@ besogo.create = function(container, options) {
     if (options.realstones) { // Using realistic stones
         editor.REAL_STONES = true;
         editor.SHADOWS = options.shadows;
+    } else if (options.customstones) {
+        editor.CUSTOM_STONES = options.customstones;
+        editor.SHADOWS = (options.shadows && options.shadows !== 'auto');
     } else { // SVG stones
         editor.SHADOWS = (options.shadows && options.shadows !== 'auto');
     }
@@ -687,6 +690,8 @@ besogo.makeBoardDisplay = function(container, editor) {
 
                     if (editor.REAL_STONES) { // Realistic stone
                         group.appendChild(besogo.realStone(x, y, color, randIndex[fromXY(i, j)]));
+                    } else if (editor.CUSTOM_STONES) {
+                        group.appendChild(besogo.realStone(x, y, color, editor.CUSTOM_STONES, true));
                     } else { // SVG stone
                         group.appendChild(besogo.svgStone(x, y, color));
                     }
@@ -3085,13 +3090,21 @@ besogo.svgShadow = function(x, y) {
 };
 
 // Makes a photo realistic stone element
-besogo.realStone = function(x, y, color, index) {
+besogo.realStone = function(x, y, color, index, force = false) {
     var element;
 
-    if (color < 0) {
-        color = 'black' + (index % besogo.BLACK_STONES);
+    if (!force) {
+        if (color < 0) {
+            color = 'black' + (index % besogo.BLACK_STONES);
+        } else {
+            color = 'white' + (index % besogo.WHITE_STONES);
+        }
     } else {
-        color = 'white' + (index % besogo.WHITE_STONES);
+        if (color < 0) {
+            color = 'black' + index;
+        } else {
+            color = 'white' + index;
+        }
     }
     color = 'img/' + color + '.png';
 
