@@ -1,7 +1,12 @@
 export default {
     "OpenBoard2": {
-        beforeAction () {
-            return false;
+        properties: {
+            type: "Game",
+            title: "Fight!",
+            boardSettings: {
+                sgf: "(;FF[4]GM[1]SZ[19])",
+                editor: "playWithoutUndo"
+            }
         }
     },
     "OpenBoard3": {
@@ -10,7 +15,6 @@ export default {
         },
         properties: {
             type: "Tutorial",
-            boardSize: 5,
             title: "Learn the Rules",
             instructions: [
                 {

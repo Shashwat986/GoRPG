@@ -6,11 +6,13 @@
 
 <script>
 import Tutorial from './Tutorial.vue';
+import Game from './Game.vue';
 
 export default {
   props: ['data'],
   components: {
-    Tutorial
+    Tutorial,
+    Game
   }
 }
 </script>

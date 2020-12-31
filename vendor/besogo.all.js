@@ -1822,6 +1822,8 @@ besogo.makeEditor = function(sizeX, sizeY) {
             case 'navOnly':
                 navigate(i, j, shiftKey);
                 break;
+            case 'playWithoutUndo':
+                playMove(i, j, 0, false);
             case 'auto':
                 if (!navigate(i, j, shiftKey) && !shiftKey) { // Try to navigate to (i, j)
                     playMove(i, j, 0, ctrlKey); // Play auto-color move if navigate fails
@@ -2014,7 +2016,7 @@ besogo.makeEditor = function(sizeX, sizeY) {
     //  Data sent to listeners:
     //    tool: changed tool selection
     //    label: changed next label
-    //    coord: changed coordinate system 
+    //    coord: changed coordinate system
     //    variantStyle: changed variant style
     //    gameInfo: changed game info
     //    comment: changed comment in current node
