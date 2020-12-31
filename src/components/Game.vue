@@ -15,6 +15,7 @@
     </div>
     <div v-html="data.text"></div>
     <div>
+      <button @click="board.editor.click(0, 0, false)">Pass</button>
     </div>
   </div>
 </div>
@@ -42,13 +43,11 @@ export default {
       })
 
       this.board.editor.addListener((data) => {
-        console.log(this, data);
+        console.log(besogo.composeSgf(this.board.editor));
       });
     }
   },
   mounted () {
-    window.vm = this;
-    console.log(JSON.stringify(this.data));
     this.$nextTick(() => {
       this.setupBoard()
     })

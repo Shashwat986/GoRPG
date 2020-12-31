@@ -158,15 +158,27 @@
                  "y":160.688
                 }, 
                 {
-                 "height":99.9626307922272,
+                 "height":99.9626,
                  "id":9,
                  "name":"BlockPath",
                  "rotation":0,
                  "type":"Notification",
                  "visible":true,
-                 "width":26.1584454409567,
-                 "x":342.862481315396,
-                 "y":239.162929745889
+                 "width":26.1584,
+                 "x":342.862,
+                 "y":239.163
+                }, 
+                {
+                 "height":0,
+                 "id":10,
+                 "name":"NPC1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":0,
+                 "x":181.240657698057,
+                 "y":340.059790732436
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -175,7 +187,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":10,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
