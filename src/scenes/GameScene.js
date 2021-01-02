@@ -2,7 +2,7 @@ import Player from '../classes/Player.js';
 import NPC from '../classes/NPC.js';
 import ActionArea from '../classes/ActionArea.js';
 import store from '../store';
-import baseActionAreaConfig from '../sceneData/index.js';
+import SceneData from '../sceneData/index.js';
 
 class GameScene extends Phaser.Scene {
     constructor(test) {
@@ -16,8 +16,7 @@ class GameScene extends Phaser.Scene {
         this.playerStart = data.playerStart;
 
         this.store = store;
-        this.actionAreaConfig = baseActionAreaConfig[this.mapName].actionAreas;
-        this.interactorsConfig = baseActionAreaConfig[this.mapName].interactors;
+        this.sceneConfig = new SceneData(this);
     }
 
     preload () {
@@ -154,50 +153,6 @@ class GameScene extends Phaser.Scene {
             this.scene.pause()
             this.scene.run('MenuScene', this)
         });
-    }
-
-    // ActionAreaHelpers
-
-    beforeAction (zone) {
-        if (
-            this.actionAreaConfig[zone.name] &&
-            this.actionAreaConfig[zone.name].beforeAction
-        ) {
-            return this.actionAreaConfig[zone.name].beforeAction.apply(this);
-        }
-
-        return true;
-    }
-
-    onInteract(npc) {
-        if (
-            this.interactorsConfig &&
-            this.interactorsConfig[npc.name] &&
-            this.interactorsConfig[npc.name].onInteract
-        ) {
-            return this.interactorsConfig[npc.name].onInteract.apply(this);
-        }
-    }
-
-    getProperties (zone) {
-        if (
-            this.actionAreaConfig &&
-            this.actionAreaConfig[zone.name] &&
-            this.actionAreaConfig[zone.name].properties != null
-        ) {
-            return this.actionAreaConfig[zone.name].properties
-        }
-
-        if (
-            this.interactorsConfig &&
-            this.interactorsConfig[zone.name] &&
-            this.interactorsConfig[zone.name].properties != null
-        ) {
-            return this.interactorsConfig[zone.name].properties
-        }
-
-        // Required to prevent caching(?) at BoardScene.init
-        return {}
     }
 }
 

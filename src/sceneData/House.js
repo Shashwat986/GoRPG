@@ -1,32 +1,33 @@
 export default {
     config: {
     },
-    actionAreas: {
+    events: {
         "BlockPath": {
             properties: {
                 text: "The path is blocked"
             }
         },
         "OpenBoard1": {
+            type: "Game",
             properties: {
-                type: "Game",
                 title: "Fight!",
                 boardSettings: {
                     sgf: "(;FF[4]GM[1]SZ[19])",
                     background: 'water',
                     customstones: 99
                 }
+            },
+            genMove (board) {
+                board.editor.playMove(0, 0, 0)
             }
-        }
-    },
-    interactors: {
+        },
         "NPC1": {
             properties: {
                 spritesheet: 'Dog 01-1',
                 randomWalk: true
             },
-            onInteract (npc) {
-                this.showNotification("Woof!");
+            onInteract ({scene}) {
+                scene.showNotification("Woof!");
             }
         }
     }

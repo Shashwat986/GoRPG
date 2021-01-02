@@ -1522,6 +1522,7 @@ besogo.makeEditor = function(sizeX, sizeY) {
 
         // Enumeration of editor tools/modes
         TOOLS = ['navOnly', // read-only navigate mode
+            'playWithoutUndo',
             'auto', // auto-mode: navigate or auto-play color
             'playB', // play black stone
             'playW', // play white stone
@@ -1575,7 +1576,8 @@ besogo.makeEditor = function(sizeX, sizeY) {
         promote: promote,
         demote: demote,
         getRoot: getRoot,
-        loadRoot: loadRoot // Loads new game state
+        loadRoot: loadRoot, // Loads new game state
+        playMove: playMove
     };
 
     // Returns the active tool
@@ -1824,6 +1826,7 @@ besogo.makeEditor = function(sizeX, sizeY) {
                 break;
             case 'playWithoutUndo':
                 playMove(i, j, 0, false);
+                break;
             case 'auto':
                 if (!navigate(i, j, shiftKey) && !shiftKey) { // Try to navigate to (i, j)
                     playMove(i, j, 0, ctrlKey); // Play auto-color move if navigate fails

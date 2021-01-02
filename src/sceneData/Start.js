@@ -1,23 +1,26 @@
 export default {
     config: {
     },
-    actionAreas: {
+    events: {
         "OpenBoard2": {
+            type: "Game",
             properties: {
-                type: "Game",
                 title: "Fight!",
                 boardSettings: {
                     sgf: "(;FF[4]GM[1]SZ[9])",
                     editor: "playWithoutUndo"
                 }
+            },
+            genMove (board) {
+                console.log(board);
             }
         },
         "OpenBoard3": {
+            type: "Tutorial",
             afterAction () {
                 this.store.commit('newState', 'TutorialDone');
             },
             properties: {
-                type: "Tutorial",
                 title: "Learn the Rules",
                 instructions: [
                     {

@@ -12,8 +12,8 @@ class BoardScene extends Phaser.Scene {
         });
     }
 
-    init (data) {
-        this.data = data
+    init ({oldScene, actionArea}) {
+        this.sceneConfig = oldScene.sceneConfig.getData(actionArea.name);
     }
 
     preload () {
@@ -28,7 +28,7 @@ class BoardScene extends Phaser.Scene {
             y: this.screenCenterY,
             w: 0.85,
             h: 0.85,
-            data: this.data
+            config: this.sceneConfig
         });
 
         this.add.image(this.sys.game.config.width - 48, 48, 'cross')

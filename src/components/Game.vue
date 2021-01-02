@@ -23,9 +23,10 @@
 
 <script>
 export default {
-  props: ['data'],
+  props: ['data', 'config'],
   data () {
     return {
+      userColor: -1
     }
   },
   computed: {
@@ -42,12 +43,27 @@ export default {
         customstones: this.data.boardSettings.customstones
       })
 
+      if (this.userColor == -1) {
+        // pass
+      } else {
+        this.config.genMove(this.board);
+      }
+
       this.board.editor.addListener((data) => {
-        console.log(besogo.composeSgf(this.board.editor));
+        // console.log(besogo.composeSgf(this.board.editor));
+        if (this.board.editor.getCurrent().move.color == this.userColor) {
+          this.config.genMove(this.board)
+        }
       });
     }
   },
   mounted () {
+    window.vw = this
+
+    if (this.data.boardSettings.userColor) {
+      this.userColor = this.data.boardSettings.userColor;
+    }
+
     this.$nextTick(() => {
       this.setupBoard()
     })

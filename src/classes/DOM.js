@@ -9,7 +9,7 @@ export default class DOM extends Phaser.GameObjects.DOMElement {
         this.vue = new Vue({
             render: h => h(Base, {
                 attrs: {
-                    data: data.data
+                    data: data.config
                 }
             }),
         }).$mount();
