@@ -1,3 +1,5 @@
+import AI from '../classes/AI.js'
+
 export default {
     config: {
     },
@@ -16,9 +18,6 @@ export default {
                     background: 'water',
                     customstones: 99
                 }
-            },
-            genMove (board) {
-                board.editor.playMove(0, 0, 0)
             }
         },
         "NPC1": {

@@ -1523,6 +1523,7 @@ besogo.makeEditor = function(sizeX, sizeY) {
         // Enumeration of editor tools/modes
         TOOLS = ['navOnly', // read-only navigate mode
             'playWithoutUndo',
+            'none',
             'auto', // auto-mode: navigate or auto-play color
             'playB', // play black stone
             'playW', // play white stone
@@ -1875,6 +1876,9 @@ besogo.makeEditor = function(sizeX, sizeY) {
                 break;
             case 'label':
                 setMarkup(i, j, label);
+                break;
+            case 'none':
+                // Do nothing
                 break;
         }
     }

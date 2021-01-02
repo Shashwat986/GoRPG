@@ -10,9 +10,6 @@ export default {
                     sgf: "(;FF[4]GM[1]SZ[9])",
                     editor: "playWithoutUndo"
                 }
-            },
-            genMove (board) {
-                console.log(board);
             }
         },
         "OpenBoard3": {
