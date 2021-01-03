@@ -10,6 +10,9 @@ export default {
                     sgf: "(;FF[4]GM[1]SZ[9])",
                     editor: "playWithoutUndo"
                 }
+            },
+            aiSettings: {
+                level: "10k"
             }
         },
         "OpenBoard3": {
