@@ -10,8 +10,12 @@ export default class AI {
     }
 
     getColor (board) {
-        if (board.editor.getCurrent().move.color < 0) {
-            return 'W'
+        if (board.editor.getCurrent() && board.editor.getCurrent().move) {
+            if (board.editor.getCurrent().move.color < 0) {
+                return 'W'
+            } else {
+                return 'B'
+            }
         } else {
             return 'B'
         }
@@ -24,8 +28,9 @@ export default class AI {
                 y: 0
             }
         }
+
         let x = "ABCDEFGHJKLMNOPQRSTUVWXYZ".indexOf(move[0]) + 1
-        let y = board.editor.getCurrent().getSize().y - parseInt(move[1]) + 1
+        let y = board.editor.getCurrent().getSize().y - parseInt(move.substring(1)) + 1
         return {
             x: x,
             y: y
@@ -40,12 +45,7 @@ export default class AI {
         return axios.post(this.baseUrl() + 'genmove/' + color, {
             sgf: sgf
         }).then((resp) => {
-            let move = resp.data.response;
-            console.log(move);
-
-            let d = this.convertToXY(move, board)
-            console.log(d)
-            return d;
+            return resp.data;
         });
     }
 }

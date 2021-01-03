@@ -7,8 +7,8 @@ export default {
             properties: {
                 title: "Fight!",
                 boardSettings: {
-                    sgf: "(;FF[4]GM[1]SZ[9])",
-                    editor: "playWithoutUndo"
+                    sgf: "(;FF[4]GM[1]SZ[9]KM[0])",
+                    userColor: 1
                 }
             },
             aiSettings: {

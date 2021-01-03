@@ -752,6 +752,12 @@ besogo.makeBoardDisplay = function(container, editor) {
                             case 5:
                                 element = besogo.svgBlock(x, y, color);
                                 break;
+                            case 51:
+                                element = besogo.svgBlock(x, y, "white");
+                                break;
+                            case 52:
+                                element = besogo.svgBlock(x, y, "black");
+                                break;
                         }
                     } else { // Markup is a label
                         if (!stone) { // If placing label on empty spot
@@ -1578,7 +1584,8 @@ besogo.makeEditor = function(sizeX, sizeY) {
         demote: demote,
         getRoot: getRoot,
         loadRoot: loadRoot, // Loads new game state
-        playMove: playMove
+        playMove: playMove,
+        setMarkup: setMarkup
     };
 
     // Returns the active tool

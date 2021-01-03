@@ -14,10 +14,13 @@ export default {
             properties: {
                 title: "Fight!",
                 boardSettings: {
-                    sgf: "(;FF[4]GM[1]SZ[19])",
+                    sgf: "(;FF[4]GM[1]SZ[7]KM[0])",
                     background: 'water',
                     customstones: 99
                 }
+            },
+            aiSettings: {
+                level: "10k"
             }
         },
         "NPC1": {
