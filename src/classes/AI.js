@@ -6,7 +6,7 @@ export default class AI {
     }
 
     baseUrl () {
-        return `http://localhost:3000/rank/${this.level}/`;
+        return __BASEURL__ + `/rank/${this.level}/`;
     }
 
     getColor (board) {

@@ -5,7 +5,8 @@ var VueLoaderPlugin = require('vue-loader/lib/plugin')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 var definePlugin = new webpack.DefinePlugin({
-    __DEV__: false
+    __DEV__: false,
+    __BASEURL__: "<<deploy>>"
 })
 
 module.exports = {
