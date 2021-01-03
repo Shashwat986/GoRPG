@@ -20,7 +20,7 @@ export default {
                 }
             },
             aiSettings: {
-                level: "10k"
+                level: "30k"
             }
         },
         "NPC1": {

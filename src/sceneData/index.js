@@ -44,7 +44,7 @@ export default class SceneData {
 
     onInteract (evt) {
         if (this.getData(evt.name).onInteract) {
-            return this.interactors[evt.name].onInteract({
+            return this.getData(evt.name).onInteract({
                 scene: this.scene,
                 zone: this.evt
             })
