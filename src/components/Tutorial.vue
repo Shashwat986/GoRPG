@@ -10,7 +10,7 @@
   <div style="left: 55%; top: 10%; height: 80%; width: 40%; position: absolute;">
     <div>
       <h2>
-        {{data.title}}
+        {{properties.title}}
       </h2>
     </div>
     <div v-html="currentInstruction.text"></div>
@@ -20,7 +20,7 @@
         :disabled="(instructionID == 0)">Previous</button>
       <button
         @click="updateInstruction(1)"
-        :disabled="!(instructionID < data.instructions.length - 1)">Next</button>
+        :disabled="!(instructionID < properties.instructions.length - 1)">Next</button>
       <button
         @click="setupBoard">Reset</button>
     </div>
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  props: ['data'],
+  props: ['properties'],
   data () {
     return {
       game: null,
@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     currentInstruction () {
-      return this.data.instructions[this.instructionID]
+      return this.properties.instructions[this.instructionID]
     }
   },
   methods: {

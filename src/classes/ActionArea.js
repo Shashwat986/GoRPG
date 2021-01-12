@@ -19,11 +19,13 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
         if (player.interactingWithActionArea)
             return;
 
-        if (!this.scene.sceneConfig.beforeAction(this)) {
+        let eventData = this.scene.sceneConfig.getData(this.name);
+
+        if (!eventData.beforeAction()) {
             return;
         }
 
-        let properties = this.scene.sceneConfig.getProperties(this);
+        let properties = eventData.getProperties();
 
         if (this.type === "Interaction") {
             this.scene.scene.pause()

@@ -1,10 +1,11 @@
 export default class NPC extends Phaser.GameObjects.Sprite {
     constructor(scene, obj) {
-        let config = scene.sceneConfig.getProperties(obj);
+        let config = scene.sceneConfig.getData(obj.name).getProperties();
 
         super(scene, obj.x, obj.y, config.spritesheet, 1);
         this.scene = scene;
         this.name = obj.name;
+        this.sceneConfig = scene.sceneConfig.getData(obj.name);
 
         this.spritesheet = config.spritesheet;
 
@@ -33,7 +34,7 @@ export default class NPC extends Phaser.GameObjects.Sprite {
 
     playerCollision (player, npc) {
         if (npc.scene.keyZ.isDown) {
-            npc.scene.sceneConfig.onInteract(npc)
+            npc.sceneConfig.onInteract();
         }
     }
 

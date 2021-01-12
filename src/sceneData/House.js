@@ -21,6 +21,9 @@ export default {
             },
             aiSettings: {
                 level: "30k"
+            },
+            onWin ({ store }) {
+                store.commit('levelUp');
             }
         },
         "NPC1": {
@@ -28,8 +31,8 @@ export default {
                 spritesheet: 'Dog 01-1',
                 randomWalk: true
             },
-            onInteract ({scene}) {
-                scene.showNotification("Woof!");
+            onInteract () {
+                this.baseScene.showNotification("Woof!");
             }
         }
     }

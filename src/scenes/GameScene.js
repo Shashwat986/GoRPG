@@ -9,6 +9,9 @@ class GameScene extends Phaser.Scene {
         super({
             key: 'GameScene'
         });
+
+        window.GlobalConfig.scene = this;
+        window.GlobalConfig.baseScene = this;
     }
 
     init (data) {
@@ -17,6 +20,10 @@ class GameScene extends Phaser.Scene {
 
         this.store = store;
         this.sceneConfig = new SceneData(this);
+
+        window.GlobalConfig.baseSceneData = this.sceneConfig;
+        window.GlobalConfig.store = this.store;
+        window.GlobalConfig.state = this.store.state;
     }
 
     preload () {
@@ -48,21 +55,21 @@ class GameScene extends Phaser.Scene {
         let screenCenterX = 32*12
         let screenCenterY = 32*14
         if (this.notificationText) {
-            this.notificationText.setText(text).setVisible(true);
+            this.notificationText.destroy();
 
             if (this.notificationTimeout) {
                 this.notificationTimeout.remove();
             }
-        } else {
-            this.notificationText = this.add.text(screenCenterX, screenCenterY, text, {
-                    backgroundColor: "#eeddbb",
-                    color: "#663300",
-                    padding: { x: 20, y: 8 }
-                })
-                .setDepth(20)
-                .setOrigin(0.5, 0.5)
-                .setScrollFactor(0);
         }
+
+        this.notificationText = this.add.text(screenCenterX, screenCenterY, text, {
+                backgroundColor: "#eeddbb",
+                color: "#663300",
+                padding: { x: 20, y: 8 }
+            })
+            .setDepth(20)
+            .setOrigin(0.5, 0.5)
+            .setScrollFactor(0);
 
         this.notificationTimeout = this.time.delayedCall(2000, () => {
             this.notificationText.destroy();

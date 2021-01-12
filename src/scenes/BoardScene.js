@@ -10,6 +10,8 @@ class BoardScene extends Phaser.Scene {
                 backgroundColor: 'rgba(0,0,0,0.5)'
             }
         });
+
+        window.GlobalConfig.scene = this;
     }
 
     init ({oldScene, actionArea}) {
@@ -28,7 +30,7 @@ class BoardScene extends Phaser.Scene {
             y: this.screenCenterY,
             w: 0.85,
             h: 0.85,
-            config: this.sceneConfig
+            sceneConfig: this.sceneConfig
         });
 
         this.add.image(this.sys.game.config.width - 48, 48, 'cross')

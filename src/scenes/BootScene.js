@@ -5,6 +5,8 @@ class BootScene extends Phaser.Scene {
         super({
             key: 'BootScene'
         });
+
+        window.GlobalConfig.scene = this;
     }
     preload() {
         this.store = store;

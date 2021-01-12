@@ -32,3 +32,7 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+window.GlobalConfig = {
+    game: game
+}

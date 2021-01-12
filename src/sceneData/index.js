@@ -5,6 +5,47 @@ let CONFIG = {
     House
 }
 
+class EventData {
+    constructor (eventData, scene) {
+        this.data = eventData;
+        if (this.data == null) {
+            this.data = {}
+        }
+        this.scene = scene;
+
+        return this;
+    }
+
+    aiSettings () {
+        return this.data.aiSettings;
+    }
+
+    getProperties () {
+        return this.data.properties;
+    }
+
+    beforeAction () {
+        console.log(this)
+        if (this.data.beforeAction) {
+            return this.data.beforeAction.bind(window.GlobalConfig)();
+        }
+
+        return true;
+    }
+
+    onInteract () {
+        if (this.data.onInteract) {
+            return this.data.onInteract.bind(window.GlobalConfig)();
+        }
+    }
+
+    onWin (score) {
+        if (this.data.onWin) {
+            return this.data.onWin.bind(window.GlobalConfig)();
+        }
+    }
+}
+
 export default class SceneData {
     constructor (scene) {
         this.data = CONFIG[scene.mapName];
@@ -20,35 +61,11 @@ export default class SceneData {
     }
 
     getData (evtName) {
+        return new EventData(this.events[evtName], this.scene)
         if (this.events[evtName]) {
             return this.events[evtName];
         } else {
             return {}
         }
-    }
-
-    getProperties (evt) {
-        return this.getData(evt.name).properties;
-    }
-
-    beforeAction (evt) {
-        if (this.getData(evt.name).beforeAction) {
-            return this.getData(evt.name).beforeAction({
-                scene: this.scene,
-                zone: this.evt
-            });
-        }
-
-        return true;
-    }
-
-    onInteract (evt) {
-        if (this.getData(evt.name).onInteract) {
-            return this.getData(evt.name).onInteract({
-                scene: this.scene,
-                zone: this.evt
-            })
-        }
-
     }
 }

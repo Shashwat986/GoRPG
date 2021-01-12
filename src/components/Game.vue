@@ -2,7 +2,7 @@
 <div style="position: relative; width: 100%; height: 100%;">
   <div style="width: 65%; height: 80%; top: 10%; left: 5%; position: absolute;">
     <div
-      :class="['game-board', 'board-background-' + data.boardSettings.background]"
+      :class="['game-board', 'board-background-' + properties.boardSettings.background]"
       ref="board"
       panels="control">
     </div>
@@ -10,10 +10,10 @@
   <div style="left: 75%; top: 10%; height: 80%; width: 25%; position: absolute;">
     <div>
       <h2>
-        {{data.title}}
+        {{properties.title}}
       </h2>
     </div>
-    <div v-html="data.text"></div>
+    <div v-html="properties.text"></div>
     <div>
       <button @click="board.editor.click(0, 0, false)">Pass</button>
     </div>
@@ -25,7 +25,7 @@
 import AI from '../classes/AI';
 
 export default {
-  props: ['data', 'config'],
+  props: ['properties', 'sceneConfig'],
   data () {
     return {
       userColor: -1,
@@ -43,23 +43,23 @@ export default {
   },
   methods: {
     setupBoard () {
-      this.$refs.board.innerHTML = this.data.boardSettings.sgf;
+      this.$refs.board.innerHTML = this.properties.boardSettings.sgf;
 
       this.board = besogo.create(this.$refs.board, {
         panels: ['names'],
         tool: 'playWithoutUndo',
         nowheel: true,
         nokeys: true,
-        customstones: this.data.boardSettings.customstones
+        customstones: this.properties.boardSettings.customstones
       })
 
       this.board.editor.setGameInfo("Human", "P" + this.userColorLetter);
       this.board.editor.setGameInfo("7k", this.userColorLetter + "R");
 
       this.board.editor.setGameInfo("GNUGo", "P" + this.opponentColorLetter);
-      this.board.editor.setGameInfo(this.config.aiSettings.level, this.opponentColorLetter + "R");
+      this.board.editor.setGameInfo(this.sceneConfig.aiSettings.level, this.opponentColorLetter + "R");
 
-      this.ai = new AI(this.config.aiSettings);
+      this.ai = new AI(this.sceneConfig.aiSettings);
 
       if (this.userColor == 1) {
         this.playAIMove();
@@ -111,13 +111,16 @@ export default {
     }
   },
   mounted () {
-    if (this.data.boardSettings.userColor) {
-      this.userColor = this.data.boardSettings.userColor;
+    if (this.properties.boardSettings.userColor) {
+      this.userColor = this.properties.boardSettings.userColor;
     }
 
     this.$nextTick(() => {
       this.setupBoard()
     })
+  },
+  created () {
+    window.GlobalConfig.vue = this;
   }
 }
 </script>
