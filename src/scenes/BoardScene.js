@@ -10,11 +10,11 @@ class BoardScene extends Phaser.Scene {
                 backgroundColor: 'rgba(0,0,0,0.5)'
             }
         });
-
-        window.GlobalConfig.scene = this;
     }
 
     init ({oldScene, actionArea}) {
+        window.GlobalConfig.scene = this;
+
         this.sceneConfig = oldScene.sceneConfig.getData(actionArea.name);
     }
 
@@ -37,9 +37,13 @@ class BoardScene extends Phaser.Scene {
             .setDisplaySize(32, 32)
             .setInteractive()
             .on('pointerup', () => {
-                this.scene.stop();
-                this.scene.wake('GameScene');
+                this.end();
             });
+    }
+
+    end () {
+        this.scene.stop();
+        this.scene.wake('GameScene');
     }
 
     update () {

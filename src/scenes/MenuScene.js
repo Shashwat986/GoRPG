@@ -6,11 +6,11 @@ class MenuScene extends Phaser.Scene {
                 backgroundColor: 'rgba(0,0,0,0.5)'
             }
         });
-
-        window.GlobalConfig.scene = this;
     }
 
     init (oldScene) {
+        window.GlobalConfig.scene = this;
+
         this.oldScene = oldScene;
     }
 

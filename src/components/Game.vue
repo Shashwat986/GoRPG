@@ -18,6 +18,20 @@
       <button @click="board.editor.click(0, 0, false)">Pass</button>
     </div>
   </div>
+  <div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);" v-if="over">
+    <div style="position: absolute; left: 20%; top: 30%; width: 60%; height: 40%; background-color: #eeddbb; padding: 20px;">
+      <div style="text-align: center; font-size: 24px; font-weight: bold;">
+        Game Over
+      </div>
+      <div style="text-align: center; font-size: 32px; font-weight: bold;">
+        {{over.winner}} wins!
+      </div>
+      <div style="text-align: center; font-size: 18px;">
+        {{over.score}}
+      </div>
+      <button style="text-align: center;" @click="gameOverContinue">Continue</button>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -30,7 +44,8 @@ export default {
     return {
       userColor: -1,
       board: null,
-      ai: null
+      ai: null,
+      over: null
     }
   },
   computed: {
@@ -75,6 +90,17 @@ export default {
         }
       });
     },
+    gameOverContinue () {
+      Promise.resolve(() => {
+        if (this.over.score[0] == this.userColorLetter) {
+          this.sceneConfig.onWin()
+        } else if (this.over.score[0] == this.opponentColorLetter) {
+          this.sceneConfig.onLose()
+        }
+      }).then(() => {
+        window.GlobalConfig.scene.end();
+      });
+    },
     playAIMove () {
       // Prevent moves
       this.board.editor.setTool('none');
@@ -87,7 +113,6 @@ export default {
         }
 
         if (aiMove.over) {
-          console.log(aiMove);
           aiMove.final_status.dead.forEach((coord) => {
             let move = this.ai.convertToXY(coord, this.board);
             this.board.editor.setMarkup(move.x, move.y, 4);
@@ -100,6 +125,10 @@ export default {
             let move = this.ai.convertToXY(coord, this.board);
             this.board.editor.setMarkup(move.x, move.y, 52);
           });
+
+          this.over = {};
+          this.over.winner = aiMove.final_status.score[0];
+          this.over.score = aiMove.final_status.score;
         } else {
           // Enable playing again
           this.board.editor.setTool('playWithoutUndo');

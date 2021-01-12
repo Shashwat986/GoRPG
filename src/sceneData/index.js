@@ -44,6 +44,12 @@ class EventData {
             return this.data.onWin.bind(window.GlobalConfig)();
         }
     }
+
+    onLose (score) {
+        if (this.data.onLoss) {
+            return this.data.onLose.bind(window.GlobalConfig)();
+        }
+    }
 }
 
 export default class SceneData {

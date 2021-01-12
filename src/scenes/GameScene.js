@@ -9,12 +9,12 @@ class GameScene extends Phaser.Scene {
         super({
             key: 'GameScene'
         });
-
-        window.GlobalConfig.scene = this;
         window.GlobalConfig.baseScene = this;
     }
 
     init (data) {
+        window.GlobalConfig.scene = this;
+
         this.mapName = data.mapName;
         this.playerStart = data.playerStart;
 

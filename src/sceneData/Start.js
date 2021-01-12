@@ -13,6 +13,9 @@ export default {
             },
             aiSettings: {
                 level: "10k"
+            },
+            onWin () {
+                console.log("hererrrr");
             }
         },
         "OpenBoard3": {
