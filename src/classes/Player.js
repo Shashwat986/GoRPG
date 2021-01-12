@@ -5,6 +5,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         scene.physics.world.enable(this);
         scene.add.existing(this);
 
+        this.body.setSize(24, 16, false)
+        this.body.setOffset(4, 16)
+
         this.createAnims();
 
         this.depth = 5;

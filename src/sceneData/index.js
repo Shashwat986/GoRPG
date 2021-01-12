@@ -25,7 +25,6 @@ class EventData {
     }
 
     beforeAction () {
-        console.log(this)
         if (this.data.beforeAction) {
             return this.data.beforeAction.bind(window.GlobalConfig)();
         }
