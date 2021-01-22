@@ -13,6 +13,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.depth = 5;
         this.body.setCollideWorldBounds(true);
         scene.physics.add.collider(this, scene.layerCollides);
+
+        this.interactionZone = scene.add.zone(x, y, 12, 12);
+        scene.physics.world.enable(this.interactionZone)
+        //this.interactionZone =scene.add.rectangle(x, y, 32, 32).setFillStyle(0xff0000);
     }
 
     update (cursors) {
@@ -22,17 +26,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
 
-        if (cursors.left.isDown) {
-            this.body.setVelocityX(-200);
-        } else if (cursors.right.isDown) {
-            this.body.setVelocityX(200);
-        }
-
         if (cursors.up.isDown) {
             this.body.setVelocityY(-200);
+            this.interactionZone.setPosition(this.body.x + 12, this.body.y - 16)
         } else if (cursors.down.isDown) {
             this.body.setVelocityY(200);
+            this.interactionZone.setPosition(this.body.x + 12, this.body.y + 32)
         }
+
+        if (cursors.left.isDown) {
+            this.body.setVelocityX(-200);
+            this.interactionZone.setPosition(this.body.x - 16, this.body.y + 8)
+        } else if (cursors.right.isDown) {
+            this.body.setVelocityX(200);
+            this.interactionZone.setPosition(this.body.x + 40, this.body.y + 8)
+        }
+
 
         this.animate(cursors)
     }

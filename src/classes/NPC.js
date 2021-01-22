@@ -18,7 +18,8 @@ export default class NPC extends Phaser.GameObjects.Sprite {
         this.body.setCollideWorldBounds(true);
 
         scene.physics.add.collider(this, scene.layerCollides);
-        scene.physics.add.collider(scene.player, this, this.playerCollision);
+        scene.physics.add.collider(scene.player, this);
+        scene.physics.add.overlap(scene.player.interactionZone, this, this.playerCollision);
 
         if (config.randomWalk) {
             scene.time.addEvent({
@@ -36,6 +37,7 @@ export default class NPC extends Phaser.GameObjects.Sprite {
         if (npc.scene.keyZ.isDown) {
             npc.sceneConfig.onInteract();
         }
+        npc.body.setVelocity(0)
     }
 
     step (x = null, y = null) {

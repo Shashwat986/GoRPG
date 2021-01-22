@@ -91,11 +91,13 @@ export default {
       });
     },
     gameOverContinue () {
-      Promise.resolve(() => {
+      return Promise.resolve(() => {
         if (this.over.score[0] == this.userColorLetter) {
           this.sceneConfig.onWin()
         } else if (this.over.score[0] == this.opponentColorLetter) {
           this.sceneConfig.onLose()
+        } else {
+          this.sceneConfig.onDraw()
         }
       }).then(() => {
         window.GlobalConfig.scene.end();
