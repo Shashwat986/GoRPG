@@ -10,7 +10,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.createAnims();
 
-        this.depth = 5;
+        this.depth = 6;
         this.body.setCollideWorldBounds(true);
         scene.physics.add.collider(this, scene.layerCollides);
 
