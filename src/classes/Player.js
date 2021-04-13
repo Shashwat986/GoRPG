@@ -16,7 +16,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.interactionZone = scene.add.zone(x, y, 12, 12);
         scene.physics.world.enable(this.interactionZone)
-        //this.interactionZone =scene.add.rectangle(x, y, 32, 32).setFillStyle(0xff0000);
     }
 
     update (cursors) {

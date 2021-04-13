@@ -8,6 +8,7 @@ export default class NPC extends Phaser.GameObjects.Sprite {
         this.sceneConfig = scene.sceneConfig.getData(obj.name);
 
         this.spritesheet = config.spritesheet;
+        this.config = config;
 
         scene.physics.world.enable(this);
         scene.add.existing(this);
@@ -34,7 +35,7 @@ export default class NPC extends Phaser.GameObjects.Sprite {
     }
 
     playerCollision (player, npc) {
-        if (npc.scene.keyZ.isDown) {
+        if (!npc.config.disableZ && npc.scene.keyZ.isDown) {
             npc.sceneConfig.onInteract();
         }
         npc.body.setVelocity(0)

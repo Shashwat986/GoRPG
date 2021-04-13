@@ -21,7 +21,10 @@ class EventData {
     }
 
     getProperties () {
-        return this.data.properties;
+        if (this.data.properties) {
+            return this.data.properties
+        }
+        return {}
     }
 
     beforeAction () {

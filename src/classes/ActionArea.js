@@ -10,22 +10,31 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
         this.scene = scene;
         scene.add.existing(this);
 
+        this.eventData = this.scene.sceneConfig.getData(this.name);
+
         this.active = false;
         scene.physics.add.overlap(scene.player, this, this.performAction, false, this);
+        scene.physics.add.overlap(scene.player.interactionZone, this, this.playerInteraction);
     }
 
-    performAction (player, zone) {
+    playerInteraction (playerInteractionZone, zone) {
+        let properties = zone.eventData.getProperties();
+
+        if (!properties.disableZ && zone.scene.keyZ.isDown) {
+            zone.performAction(zone.scene.player, zone, true)
+        }
+    }
+
+    performAction (player, zone, force = false) {
         // Note: zone === this
-        if (player.interactingWithActionArea)
+        if (player.interactingWithActionArea && !force)
             return;
 
-        let eventData = this.scene.sceneConfig.getData(this.name);
-
-        if (!eventData.beforeAction()) {
+        if (!this.eventData.beforeAction()) {
             return;
         }
 
-        let properties = eventData.getProperties();
+        let properties = this.eventData.getProperties();
 
         if (this.type === "Interaction") {
             this.scene.scene.pause()

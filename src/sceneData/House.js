@@ -6,7 +6,8 @@ export default {
     events: {
         "BlockPath": {
             properties: {
-                text: "The path is blocked"
+                text: "The path is blocked",
+                disableZ: true
             }
         },
         "OpenBoard1": {

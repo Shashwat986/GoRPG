@@ -18,17 +18,24 @@
       <button @click="board.editor.click(0, 0, false)">Pass</button>
     </div>
   </div>
-  <div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);" v-if="over">
-    <div style="position: absolute; left: 20%; top: 30%; width: 60%; height: 40%; background-color: #eeddbb; padding: 20px;">
+  <div v-if="over" class="modal-background">
+    <div class="modal-modal">
       <div style="text-align: center; font-size: 24px; font-weight: bold;">
         Game Over
       </div>
-      <div style="text-align: center; font-size: 32px; font-weight: bold;">
-        {{over.winner}} wins!
+      <div v-if="over.draw">
+        <div style="text-align: center; font-size: 32px; font-weight: bold;">
+          Draw!
+        </div>
       </div>
-      <div style="text-align: center; font-size: 18px;">
-        {{over.score}}
-      </div>
+      <template v-else>
+        <div style="text-align: center; font-size: 32px; font-weight: bold;">
+          {{over.winner}} wins!
+        </div>
+        <div style="text-align: center; font-size: 18px;">
+          {{over.score}}
+        </div>
+      </template>
       <button style="text-align: center;" @click="gameOverContinue">Continue</button>
     </div>
   </div>
@@ -131,6 +138,9 @@ export default {
           this.over = {};
           this.over.winner = aiMove.final_status.score[0];
           this.over.score = aiMove.final_status.score;
+          if (aiMove.final_status.score == 0) {
+            this.over.draw = true;
+          }
         } else {
           // Enable playing again
           this.board.editor.setTool('playWithoutUndo');
@@ -170,5 +180,24 @@ export default {
     .besogo-svg-board {
       fill: #6688cd;
     }
+  }
+
+  .modal-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-modal {
+    position: absolute;
+    left: 20%;
+    top: 30%;
+    width: 60%;
+    height: 40%;
+    background-color: #eeddbb;
+    padding: 20px;
   }
 </style>
