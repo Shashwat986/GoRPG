@@ -27,8 +27,9 @@ export default class ActionArea extends Phaser.GameObjects.Zone {
 
     performAction (player, zone, force = false) {
         // Note: zone === this
-        if (player.interactingWithActionArea && !force)
+        if (player.interactingWithActionArea && !force) {
             return;
+        }
 
         if (!this.eventData.beforeAction()) {
             return;
